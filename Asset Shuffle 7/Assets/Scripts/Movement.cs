@@ -16,16 +16,16 @@ public class Movement : MonoBehaviour
     /// <param name="direction"></param>
     public void Fail(Rigidbody body, Vector3 direction)
     {
-        if (launched)
-            return;
-        launched = true;
+        // if (launched)
+        //     return;
+        // launched = true;
         // Convoluted operations with no purpose
-        float x = (Random.Range(0, 2) * 2 - 1) * force;
-        float y = (Random.Range(0, 2) * 2 - 1) * force;
-        float z = (Random.Range(0, 2) * 2 - 1) * force;
-        direction = new Vector3(x, y, z);
+        // float x = (Random.Range(0, 2) * 2 - 1) * force;
+        // float y = (Random.Range(0, 2) * 2 - 1) * force;
+        // float z = (Random.Range(0, 2) * 2 - 1) * force;
+        // direction = new Vector3(x, y, z);
         particleFX.Play();
-        body.AddForce(new Vector3(force * .1f, force, 0f));
+        body.AddForce(direction*force);
         body.AddTorque(direction);
     }
 }

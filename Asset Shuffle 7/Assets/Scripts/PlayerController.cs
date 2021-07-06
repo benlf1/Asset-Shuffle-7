@@ -10,12 +10,20 @@ public class PlayerController : MonoBehaviour
     public Movement movement;
 
     private Vector3 movementInput;
+    public GameObject cam;
 
+    public GameObject player;
     void FixedUpdate()
     {
+        cam.transform.position = this.transform.position;
         movementInput = GetMovementInput();
-        if (movementInput != Vector3.zero)
-            movement.Fail(body, movementInput);     // Remove
+        if (movementInput != Vector3.zero) {
+            Debug.Log(cam.transform.forward);
+            float targetAngle =  Mathf.Atan2(movementInput.x, movementInput.z) * Mathf.Rad2Deg;
+            Vector3 moveDir = cam.transform.forward;
+            // player.transform.Translate(moveDir);
+            movement.Fail(body, moveDir);     // Remove
+        }
     }
 
     private Vector3 GetMovementInput() =>
